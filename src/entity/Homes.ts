@@ -17,6 +17,8 @@ export class Homes{
     des:string;
     @Column({type:'varchar',length:255})
     status:string;
+    @Column({type:'varchar',length:255})
+    image:string;
 
     @ManyToOne(()=>Users,(Users)=>Users.id)
     Users: Users[]
