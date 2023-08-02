@@ -1,8 +1,8 @@
 import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import {Users} from "./Users";
+import {User} from "./User";
 
 @Entity()
-export class Homes{
+export class Home {
     @PrimaryGeneratedColumn()
     id:number;
     @Column({type:'varchar',length:255})
@@ -20,6 +20,6 @@ export class Homes{
     @Column({type:'varchar',length:255})
     image:string;
 
-    @ManyToOne(()=>Users,(Users)=>Users.id)
-    Users: Users[]
+    @ManyToOne(()=>User,(user)=>user.id)
+    user: User
 }

@@ -26,13 +26,13 @@ class HomeController{
         let data = await this.homeService.findById(req.params.id);
         res.json(data)
     }
-    findAll = async (req,res)=>{
+    getAll = async (req,res)=>{
         let list;
-        if (req.query.name){
-            list = await this.homeService.findByName(req.query.name)
-        }else {
+        // if (req.query.name){
+        //     list = await this.homeService.findByName(req.query.name)
+        // }else {
             list = await this.homeService.findAll()
-        }
+        // }
         res.json(list)
     }
 

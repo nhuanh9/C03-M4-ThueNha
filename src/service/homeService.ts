@@ -1,9 +1,9 @@
 import {Service} from "./Service";
-import {Homes} from "../entity/Homes";
+import {Home} from "../entity/Home";
 import {AppDataSource} from "../data-source";
 
-class HomeService implements Service<Homes>{
-    private repository = AppDataSource.getRepository(Homes)
+class HomeService implements Service<Home>{
+    private repository = AppDataSource.getRepository(Home)
     add = async (data)=>{
         return await this.repository.save(data)
     }
@@ -15,7 +15,7 @@ class HomeService implements Service<Homes>{
     findAll = async () => {
         return await this.repository.find({
             relations: {
-                Users: true
+                user: true
             }
         });
     }

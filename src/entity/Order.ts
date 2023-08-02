@@ -1,9 +1,9 @@
 import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import {Users} from "./Users";
-import {Homes} from "./Homes";
+import {User} from "./User";
+import {Home} from "./Home";
 
 @Entity()
-export class Orders {
+export class Order {
     @PrimaryGeneratedColumn()
     id: number;
     @Column({type: 'int'})
@@ -11,9 +11,9 @@ export class Orders {
     @Column({type: 'int'})
     price: number
 
-    @ManyToOne(()=>Users,(Users)=>Users.id)
-    Users
+    @ManyToOne(()=>User,(user)=>user.id)
+    user: User
 
-    @ManyToOne(()=>Homes,(Homes)=>Homes.id)
-    Homes
+    @ManyToOne(()=>Home,(home)=>home.id)
+    home : Home
 }
