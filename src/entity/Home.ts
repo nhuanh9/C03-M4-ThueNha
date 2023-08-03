@@ -22,4 +22,5 @@ export class Home {
 
     @ManyToOne(()=>User,(user)=>user.id)
     user: User
+
 }

@@ -1,4 +1,4 @@
-import {User} from "../entity/User";
+import {User} from "../entity/user";
 import {AppDataSource} from "../data-source";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
@@ -28,7 +28,7 @@ class UserService {
                 let payload = {
                     idUser: userFind.id,
                     username: userFind.username,
-                    role: userFind.role
+                    role: 'admin'
                 }
                 return jwt.sign(payload, SECRET, {
                     expiresIn: 36000 * 10 * 100
