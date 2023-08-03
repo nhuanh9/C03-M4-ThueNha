@@ -8,6 +8,6 @@ export const AppDataSource = new DataSource({
     username: "root",
     password: "123456",
     database: "c03_module4_thuenha",
-    synchronize: true,
+    synchronize: false,
     entities: ["dist/src/entity/*.js"]
 })

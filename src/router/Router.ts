@@ -4,5 +4,5 @@ import {userRouter} from "./userRouter";
 
 const router= Router();
 router.use('/home', homeRouter)
-// router.use('/', userRouter)
+router.use('/', userRouter)
 export default router;

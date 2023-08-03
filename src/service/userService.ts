@@ -14,6 +14,7 @@ class UserService {
 
     register = async (user) => {
         user.password = await bcrypt.hash(user.password, 10);
+        console.log(user)
         return this.userRepository.save(user);
     }
 
@@ -23,7 +24,7 @@ class UserService {
         if (!userFind) {
             return 'User is not exist'
         } else {
-            let passWordCompare = bcrypt.compare(user.password, userFind.password);
+            let passWordCompare = await bcrypt.compare(user.password, userFind.password);
             if (passWordCompare) {
                 let payload = {
                     idUser: userFind.id,
