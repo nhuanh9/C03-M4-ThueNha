@@ -6,8 +6,10 @@ import {Homes} from "./Homes";
 export class Orders {
     @PrimaryGeneratedColumn()
     id: number;
+
     @Column({type: 'int'})
     time: number;
+
     @Column({type: 'int'})
     price: number
 

@@ -1,14 +1,13 @@
 import {AppDataSource} from "../data-source";
-import {Product} from "../entity/Product";
-import {Service} from "./Service";
+import {Homes} from "../entity/Homes";
 
-class ProductService implements Service<Product> {
-    private repository = AppDataSource.getRepository(Product);
+class HomesService {
+    private repository = AppDataSource.getRepository(Homes);
 
     findAll = async () => {
         return await this.repository.find({
             relations: {
-                category: true
+                Users: true
             }
         });
     }
@@ -21,13 +20,9 @@ class ProductService implements Service<Product> {
         return await this.repository.delete(id);
     }
 
-    findById = async (id) => {
-        return await this.repository.find({where: {id: id}});
-    }
-
     update = async (id, data) => {
         return await this.repository.update(id, data);
     }
 
 }
-export default new ProductService();
+export default new HomesService();

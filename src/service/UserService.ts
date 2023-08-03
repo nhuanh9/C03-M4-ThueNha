@@ -1,4 +1,4 @@
-import {User} from "../entity/user";
+import {Users} from "../entity/Users";
 import {AppDataSource} from "../data-source";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
@@ -8,7 +8,7 @@ class UserService {
     private userRepository;
 
     constructor() {
-        this.userRepository = AppDataSource.getRepository(User);
+        this.userRepository = AppDataSource.getRepository(Users);
     }
 
 
@@ -38,7 +38,6 @@ class UserService {
             }
         }
     }
-
 }
 
 export default new UserService();
