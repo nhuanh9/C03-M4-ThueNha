@@ -1,11 +1,12 @@
 import {Router} from "express";
-import homeController from "../controller/HomeController";
-import {auth} from "../middleware/jwt";
+import homeController from "../controller/homeController";
+import auth from "../middleware/jwt";
 
 const homeRouter = Router();
-// productRouter.use(auth)
-homeRouter.get('', homeController.findAll);
-
-homeRouter.delete('/:id', homeController.delete);
-
+// homeRouter.use(auth)
+homeRouter.get('/find', homeController.findAll);
+homeRouter.get('/:id', homeController.findById);
+homeRouter.post('', homeController.add);
+homeRouter.put('', homeController.update);
+homeRouter.delete('', homeController.delete);
 export default homeRouter;

@@ -1,6 +1,9 @@
 import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import {User} from "./User";
+
 import {Home} from "./Home";
+import {User} from "./User";
+
+
 
 @Entity()
 export class Order {
@@ -13,9 +16,9 @@ export class Order {
     @Column({type: 'int'})
     price: number
 
-    @ManyToOne(()=>User,(user)=>user.id)
+    @ManyToOne(() => User, (user) => user.id)
     user: User
 
-    @ManyToOne(()=>Home,(home)=>home.id)
-    home : Home
+    @ManyToOne(() => Home, (home) => home.id)
+    home: Home
 }

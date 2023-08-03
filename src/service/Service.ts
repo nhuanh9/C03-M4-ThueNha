@@ -5,7 +5,7 @@ export interface Service<T> {
 
     update(id, data);
 
-    findByStatus(status);
+    findById(id);
 
     delete(id);
 }

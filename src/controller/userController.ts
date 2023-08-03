@@ -4,6 +4,7 @@ const session = require('express-session');
 
 class UserController {
 
+
     register = async (req: Request, res: Response) => {
         await userService.register(req.body);
         res.status(201).json('Create user success')
@@ -13,7 +14,6 @@ class UserController {
         let resultCheck = await userService.checkUser(req.body);
         res.status(200).json(resultCheck);
     }
-
 
 }
 
