@@ -12,10 +12,26 @@ class UserService {
     }
 
 
+    // register = async (user) => {
+    //     let userFind = await this.userRepository.findOneBy({
+    //         where:{
+    //             user: user.username
+    //         }
+    //     })
+    //     console.log(userFind)
+    //     if(userFind != undefined){
+    //         user.password = await bcrypt.hash(user.password, 10);
+    //         return this.userRepository.save(user);
+    //     } else {
+    //         return "Fail!"
+    //     }
+    //
+    // }
     register = async (user) => {
         user.password = await bcrypt.hash(user.password, 10);
         return this.userRepository.save(user);
     }
+
 
 
     checkUser = async (user) => {
@@ -23,7 +39,7 @@ class UserService {
         if (!userFind) {
             return 'User is not exist'
         } else {
-            let passWordCompare = bcrypt.compare(user.password, userFind.password);
+            let passWordCompare =  await bcrypt.compare(user.password, userFind.password);
             if (passWordCompare) {
                 let payload = {
                     idUser: userFind.id,
