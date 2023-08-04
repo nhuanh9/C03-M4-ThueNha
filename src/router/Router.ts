@@ -1,6 +1,7 @@
 import {Router} from "express";
-import homeRouter from "./homeRouter";
+
 import {userRouter} from "./userRouter";
+import homeRouter from "./HomeRouter";
 
 const router= Router();
 router.use('/homes', homeRouter)
