@@ -39,13 +39,6 @@ class HomeService implements Service<Home> {
             }
         })
     }
-    // sortPriceASC = async (price) => {
-    //     let list = await this.repository.find({
-    //         order: {price: "asc"}
-    //     })
-    //     return list
-    // }
-    javascript
     sortPrice = async (sortOrder) => {
         let list;
         if (sortOrder === "ASC") {

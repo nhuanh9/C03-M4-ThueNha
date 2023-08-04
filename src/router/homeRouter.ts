@@ -4,7 +4,7 @@ import auth from "../middleware/jwt";
 
 const homeRouter = Router();
 // homeRouter.use(auth)
-homeRouter.get('/find', homeController.findAll);
+homeRouter.get('/', homeController.findAll);
 homeRouter.get('/:id', homeController.findById);
 homeRouter.post('', homeController.add);
 homeRouter.put('', homeController.update);
