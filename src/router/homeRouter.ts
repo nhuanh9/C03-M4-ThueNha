@@ -1,7 +1,7 @@
 import {Router} from "express";
 
 import auth from "../middleware/jwt";
-import homeController from "../controller/HomeController";
+import homeController from "../controller/homeController";
 // import {AuthorizeMiddleware} from "../middleware/authorize.middleware";
 
 const homeRouter = Router();
