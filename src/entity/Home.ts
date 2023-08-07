@@ -1,5 +1,6 @@
 import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
 import {User} from "./User";
+import {Order} from "./Order";
 
 @Entity()
 export class Home {
@@ -22,5 +23,6 @@ export class Home {
 
     @ManyToOne(()=>User,(user)=>user.id)
     user: User
-
+    @ManyToOne(()=>Order,(order)=>order.id)
+    order: Order
 }

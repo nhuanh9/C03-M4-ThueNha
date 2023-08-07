@@ -19,6 +19,4 @@ export class Order {
     @ManyToOne(() => User, (user) => user.id)
     user: User
 
-    @ManyToOne(() => Home, (home) => home.id)
-    home: Home
 }

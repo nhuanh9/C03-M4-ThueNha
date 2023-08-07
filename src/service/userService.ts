@@ -54,6 +54,16 @@ class UserService {
             }
         }
     }
+    findById = async (id) => {
+        return await this.userRepository.find({
+            where: {
+                id: id
+            }
+        })
+    }
+    findAll = async () => {
+        return this.userRepository.find()
+    }
 
 }
 

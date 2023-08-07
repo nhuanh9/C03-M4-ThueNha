@@ -8,11 +8,9 @@ const homeRouter = Router();
 // homeRouter.use(auth)
 homeRouter.get('/', homeController.findAll);
 homeRouter.get('/:id', homeController.findById);
-
-
 // homeRouter.use(AuthorizeMiddleware.authorizedAdmin)
 
 homeRouter.post('', homeController.add);
-homeRouter.put('', homeController.update);
-homeRouter.delete('', homeController.delete);
+homeRouter.put('/:id', homeController.update);
+homeRouter.delete('/:id', homeController.delete);
 export default homeRouter;

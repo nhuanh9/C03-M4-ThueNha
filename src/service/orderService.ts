@@ -10,5 +10,9 @@ class OrderService{
     delete = async (id) =>{
         return this.repository.delete(id)
     }
+    getAll = async () => {
+        return this.repository.find()
+    }
+
 }
 export default new OrderService();
