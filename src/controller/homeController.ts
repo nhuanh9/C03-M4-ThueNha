@@ -26,8 +26,15 @@ class HomeController{
         res.json(data)
     }
     getAll = async (req,res)=>{
-        let list = await this.homeService.findAll()
-        res.json(list)
+        let  {id} = req.query
+        if (id == undefined){
+            let list = await this.homeService.findAll()
+            res.json(list)
+        } else if (id != undefined){
+            let data = await this.homeService.findAllUserIdId(id)
+            res.json(data)
+        }
+
     }
     findByAddress = async (req,res)=>{
         let data = await this.homeService.findByAddress(req.query.address);
@@ -48,6 +55,14 @@ class HomeController{
         let list = await this.homeService.sortPrice(req.query.price)
         res.json(list)
     }
+    sortAddress1 = async (req,res)=>{
+        let list = await this.homeService.sortAddress(req.query.address)
+        res.json(list)
+    }
+    sortAcreage1 = async (req,res)=>{
+        let list = await this.homeService.sortAcreage(req.query.acreage)
+        res.json(list)
+    }
     findAll = async (req,res)=>{
         let list
         if (req.query.name){
@@ -60,6 +75,16 @@ class HomeController{
             list = await this.homeService.findByAcreage(Number(req.query.minAcreage), Number(req.query.maxAcreage))
         }else if (req.query.price){
             list = await this.homeService.sortPrice(req.query.price)
+        }else if (req.query.address){
+            list = await this.homeService.sortAddress1(req.query.address)
+        } else if (req.query.acreage){
+            list = await this.homeService.sortAcreage1(req.query.acreage)
+        }else if (req.query.id){
+            let data = await this.homeService.findAllUserIdId(req.query.id)
+            res.json(data)
+        }else if (req.query.orderId){
+            let data = await this.homeService.getAllInOrder(req.query.orderId)
+            res.json(data)
         }else {
             list = await this.homeService.findAll()
         }

@@ -64,6 +64,43 @@ class HomeService implements Service<Home> {
         }
         return list;
     };
+    sortAddress = async (sortOrder) => {
+        let list;
+        if (sortOrder === "ASC") {
+            list = await this.repository.find({
+                order: { address: "asc" }
+            });
+        } else if (sortOrder === "DESC") {
+            list = await this.repository.find({
+                order: { address: "desc" }
+            });
+        } else {
+            // Xử lý khi sortOrder không hợp lệ, ví dụ: mặc định sắp xếp theo giá tăng dần
+            list = await this.repository.find({
+                order: { address: "asc" }
+            });
+        }
+        return list;
+    };
+    sortAcreage = async (sortOrder) => {
+        let list;
+        if (sortOrder === "ASC") {
+            list = await this.repository.find({
+                order: { acreage: "asc" }
+            });
+        } else if (sortOrder === "DESC") {
+            list = await this.repository.find({
+                order: { acreage: "desc" }
+            });
+        } else {
+            // Xử lý khi sortOrder không hợp lệ, ví dụ: mặc định sắp xếp theo giá tăng dần
+            list = await this.repository.find({
+                order: { acreage: "asc" }
+            });
+        }
+        return list;
+    };
+
     // sortPriceDESC = async (price) => {
     //     let list = await this.repository.find({
     //         order: {price: "desc"}
@@ -96,6 +133,39 @@ class HomeService implements Service<Home> {
                 name: Like(`%${name}%`)
             }
         })
+    }
+    findAllUserIdId = async (userId) =>{
+        return await this.repository.createQueryBuilder("home")
+            .leftJoinAndSelect("home.user","user")
+            .select([
+                "home.name",
+                "home.address",
+                "home.acreage",
+                "home.price",
+                "home.des",
+                "home.status",
+                "home.image",
+                "user.id"
+            ])
+            .where("user.id = :userId",{userId})
+            .getMany();
+    }
+    getAllInOrder = async (id) =>{
+        return await this.repository.createQueryBuilder("home")
+            .leftJoinAndSelect("home.order", "order")
+            .select([
+                "home.id",
+                "home.name",
+                "home.address",
+                "home.acreage",
+                "home.price",
+                "home.des",
+                "home.image",
+                "order.id",
+                "order.time"
+            ])
+            .where("order.id = :id", {id})
+            .getMany()
     }
 }
 

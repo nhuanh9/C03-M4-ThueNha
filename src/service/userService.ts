@@ -2,6 +2,7 @@ import {User} from "../entity/User";
 import {AppDataSource} from "../data-source";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+
 import {SECRET} from "../middleware/jwt";
 
 class UserService {
@@ -12,18 +13,35 @@ class UserService {
     }
 
 
+    // register = async (user) => {
+    //     let userFind = await this.userRepository.findOneBy({
+    //         where:{
+    //             user: user.username
+    //         }
+    //     })
+    //     console.log(userFind)
+    //     if(userFind != undefined){
+    //         user.password = await bcrypt.hash(user.password, 10);
+    //         return this.userRepository.save(user);
+    //     } else {
+    //         return "Fail!"
+    //     }
+    //
+    // }
     register = async (user) => {
         user.password = await bcrypt.hash(user.password, 10);
         return this.userRepository.save(user);
     }
 
 
+
     checkUser = async (user) => {
         let userFind = await this.userRepository.findOneBy({username: user.username});
+        console.log(user,userFind,111)
         if (!userFind) {
             return 'User is not exist'
         } else {
-            let passWordCompare = bcrypt.compare(user.password, userFind.password);
+            let passWordCompare =  await bcrypt.compare(user.password, userFind.password);
             if (passWordCompare) {
                 let payload = {
                     idUser: userFind.id,
@@ -37,6 +55,16 @@ class UserService {
                 return 'Password is wrong'
             }
         }
+    }
+    findById = async (id) => {
+        return await this.userRepository.find({
+            where: {
+                id: id
+            }
+        })
+    }
+    findAll = async () => {
+        return await this.userRepository.find()
     }
 
 }
