@@ -37,7 +37,6 @@ class UserService {
 
     checkUser = async (user) => {
         let userFind = await this.userRepository.findOneBy({username: user.username});
-        console.log(user,userFind,111)
         if (!userFind) {
             return 'User is not exist'
         } else {
@@ -48,9 +47,14 @@ class UserService {
                     username: userFind.username,
                     role: userFind.role
                 }
-                return jwt.sign(payload, SECRET, {
-                    expiresIn: 36000 * 10 * 100
-                })
+                return {
+                    token: jwt.sign(payload, SECRET, {
+                        expiresIn: 36000 * 10 * 100
+                    }),
+                    idUser: userFind.id,
+                    username: userFind.username,
+                    role: userFind.role
+                }
             } else {
                 return 'Password is wrong'
             }

@@ -1,8 +1,9 @@
 import {Router} from "express";
 import orderController from "../controller/orderController";
+import auth from "../middleware/jwt";
 
 const orderRouter = Router();
-// homeRouter.use(auth)
+// orderRouter.use(auth)
 orderRouter.get('/', orderController.getAll);
 // orderRouter.get('/:id', orderController.findById);
 // orderRouter.post('', orderController.add);
