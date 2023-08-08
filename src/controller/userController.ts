@@ -1,7 +1,5 @@
 import {Request, Response} from "express";
 import userService from "../service/userService";
-import jwt from 'jsonwebtoken'
-
 const session = require('express-session');
 
 class UserController {
@@ -17,18 +15,17 @@ class UserController {
         res.status(200).json(resultCheck);
     }
     findAll = async (req: Request, res: Response) => {
-
-        let  data = await userService.findAll()
-            res.json(data)}
-
-    // findByToken = async (req: Request, res: Response) => {
-    //     let token=req.headers.authorization;
-    //     let payload = jwt.decode(token)
-    //     // @ts-ignore
-    //     let data = await userService.findById(payload.idUser)
-    //     res.json(data)
-    // }
+        let data = await userService.findAll()
+        res.json(data)
+    }
+    findById = async (req: Request, res: Response) => {
+        let data = await userService.findById(req.params.id)
+        res.json(data)
+    }
+    delete = async (req, res) => {
+        let data = await userService.delete(req.params.id);
+        res.json(data)
+    }
 
 }
-
-export default new UserController();
+export default new UserController()

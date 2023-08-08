@@ -52,7 +52,8 @@ class HomeService implements Service<Home> {
             list = await this.repository.find({
                 order: { price: "asc" }
             });
-        } else if (sortOrder === "DESC") {
+        } else if (sortOrder === "+" +
+            "") {
             list = await this.repository.find({
                 order: { price: "desc" }
             });

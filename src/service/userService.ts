@@ -70,6 +70,9 @@ class UserService {
     findAll = async () => {
         return await this.userRepository.find()
     }
+    delete = async (id) => {
+        return await this.userRepository.delete(id);
+    }
 
 }
 
