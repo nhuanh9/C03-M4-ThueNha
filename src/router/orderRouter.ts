@@ -6,7 +6,7 @@ const orderRouter = Router();
 // homeRouter.use(auth)
 orderRouter.get('/', orderController.findAll);
 
-orderRouter.delete('', orderController.delete);
+orderRouter.delete('/:id', orderController.delete);
 
 orderRouter.put('/:id', orderController.update);
 export default orderRouter;

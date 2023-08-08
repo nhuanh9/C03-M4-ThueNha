@@ -10,13 +10,14 @@ class UserService {
     constructor() {
         this.userRepository = AppDataSource.getRepository(User);
     }
-
+    findAll = async () => {
+        return await this.userRepository.find()
+    }
 
     register = async (user) => {
         user.password = await bcrypt.hash(user.password, 10);
         return this.userRepository.save(user);
     }
-
 
     checkUser = async (user) => {
         let userFind = await this.userRepository.findOneBy({username: user.username});

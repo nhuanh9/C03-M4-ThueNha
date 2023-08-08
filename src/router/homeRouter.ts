@@ -7,6 +7,6 @@ const homeRouter = Router();
 homeRouter.get('/', homeController.findAll);
 homeRouter.get('/:id', homeController.findById);
 homeRouter.post('', homeController.add);
-homeRouter.put('', homeController.update);
-homeRouter.delete('', homeController.delete);
+homeRouter.put('/:id', homeController.update);
+homeRouter.delete('/:id', homeController.delete);
 export default homeRouter;

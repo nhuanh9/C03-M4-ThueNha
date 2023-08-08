@@ -9,5 +9,6 @@ export const AppDataSource = new DataSource({
     password: "123456",
     synchronize: false,
     database: "c03_module4_thuenha",
+    logging: true,
     entities: ["dist/src/entity/*.js"]
 })

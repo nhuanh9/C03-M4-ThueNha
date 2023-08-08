@@ -3,7 +3,10 @@ import userService from "../service/userService";
 const session = require('express-session');
 
 class UserController {
-
+    findAll = async (req, res) => {
+        let listUser = await userService.findAll();
+        res.json(listUser)
+}
 
     register = async (req: Request, res: Response) => {
         await userService.register(req.body);
