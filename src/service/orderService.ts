@@ -16,8 +16,9 @@ class OrderService{
     }
     getAllInOrder = async () =>{
         return await this.repository.createQueryBuilder("order")
-            .leftJoinAndSelect("order.home", "home")
+
             .leftJoinAndSelect("order.user","user")
+            .leftJoinAndSelect("order.home", "home")
             // .where("home.id = :id", {id})
             .getMany()
     }
@@ -26,9 +27,10 @@ class OrderService{
     }
     findById = async (id) => {
         return await this.repository.createQueryBuilder("order")
-            .leftJoinAndSelect("order.home", "home")
+
             .leftJoinAndSelect("order.user","user")
-            .where("home.id = :id", {id})
+            .leftJoinAndSelect("order.home", "home")
+            .where("user.id = :id", {id})
             .getMany()
     }
 
